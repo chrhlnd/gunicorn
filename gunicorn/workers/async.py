@@ -80,6 +80,7 @@ class AsyncWorker(base.Worker):
             if not self.cfg.keepalive:
                 resp.force_close()
 
+			self.cfg.patch_environ(self, req)
             respiter = self.wsgi(environ, resp.start_response)
             if respiter == ALREADY_HANDLED:
                 return False

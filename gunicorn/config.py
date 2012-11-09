@@ -978,6 +978,24 @@ class PreRequest(Setting):
         the Request.
         """
 
+class PatchEnviron(Setting):
+    name = "patch_environ"
+    section = "Server Hooks"
+    validator = validate_callable(2)
+    type = "callable"
+    def patch_environ(worker, environ):
+		pass
+    default = staticmethod(patch_environ)
+    desc = """\
+        Called just before a worker processes the request.
+		
+		The main idea here is to give server hooks to pass worker
+		state information into the worker through environ.
+		One use for this is to say start a memcached connection
+		in the pre_fork hook and assign it to the cfg of the worker.
+		Then patch it into the environment for the handler method.
+        """
+
 class PostRequest(Setting):
     name = "post_request"
     section = "Server Hooks"
