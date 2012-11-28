@@ -78,11 +78,7 @@ class AsyncWorker(base.Worker):
             if not self.cfg.keepalive:
                 resp.force_close()
 
-<<<<<<< HEAD
             self.cfg.patch_environ(self, req)
-=======
-			self.cfg.patch_environ(self, req)
->>>>>>> b813703f96e6d35126ba75a63e56f5fe2a5ee8ff
             respiter = self.wsgi(environ, resp.start_response)
             if respiter == ALREADY_HANDLED:
                 return False
