@@ -126,7 +126,8 @@ class GeventResponse(object):
         self.headers = headers
         self.response_length = clength
 
-class PyWSGIHandler(pywsgi.WSGIHandler):
+#class PyWSGIHandler(pywsgi.WSGIHandler):
+class PyWSGIHandler(wsgi.WSGIHandler):
 
     def log_request(self):
         start = datetime.fromtimestamp(self.time_start)
@@ -143,7 +144,8 @@ class PyWSGIHandler(pywsgi.WSGIHandler):
         env['RAW_URI'] = self.path
         return env
 
-class PyWSGIServer(pywsgi.WSGIServer):
+#class PyWSGIServer(pywsgi.WSGIServer):
+class PyWSGIServer(wsgi.WSGIServer):
     base_env = BASE_WSGI_ENV
 
 class GeventPyWSGIWorker(GeventWorker):
